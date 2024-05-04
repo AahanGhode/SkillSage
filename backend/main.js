@@ -1,17 +1,21 @@
-const Groq = require('groq-sdk');
-const dotenv = require('dotenv');
-const pdf = require('pdf-parse')
-const express = require("express");
-const path = require('path');
-const fetch = require('node-fetch');
-const fs = require('fs');
-const multer = require('multer');
-const cors = require('cors');
+
+import express from 'express';
+import path from 'path';
+import fs from 'fs';
+import multer from 'multer';
+import cors from 'cors';
+
+import { Model } from './model.js';
+
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename); // get the name of the directory
 
 // setup for server
 const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 // Multer configuration
 const storage = multer.diskStorage({
@@ -32,15 +36,35 @@ app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
 });
 
-app.post("/startprocessing", async (req, res) => {
-  // body contains the file name
-  const { fileName } = req.body;
-  res.send('Processing started');
+// TODO: THIS
+// app.get("/sendchatmessage", async (req, res) => {
+//   const response = await model.getResponse(req.query.message);
+
+//   res.send(response);
+// });
+
+// start processing file
+app.post('/startprocessing', async (req, res) => {
   const model = new Model();
-  await model.loadPdf(`uploads/${fileName}`);
+
+  // get text from request
+  const fileName = req.body.text;
+  // if file is pdf
+  if (fileName.endsWith('.pdf')) {
+      await model.loadPdf(`uploads/${fileName}`);
+  } else if (fileName.endsWith('.txt')) {
+      model.text = fs.readFileSync(`uploads/${fileName}`, 'utf8');
+  } else {
+      res.status(400).send('Invalid file type');
+  }
+
   await model.splitTextIntoChunks();
   await model.processChunksToDictionary();
-  res.send('Processing completed');
+
+  // Print model dictionary keys
+  console.log(model.dictionary.keys().next().value);
+
+  res.send(model.dictionary);
 });
 
 app.post('/upload', upload.single('file'), async (req, res) => {

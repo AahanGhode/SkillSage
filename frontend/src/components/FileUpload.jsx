@@ -24,15 +24,21 @@ const FileUpload = () => {
 
   //Function to clear selected file
   const clearFileInput = () => {
-    fetch("https://localhost:3001/startprocessing", {
-      method: "POST",
-      body: selectedFile.name
-    })
     inputRef.current.value = "";
     setSelectedFile(null);
     setProgress(0); 
     setUploadStatus("select");
   };
+
+  //Function to start processing the file
+  const startProcessing = async () => {
+    console.log("start processing")
+    const response = await axios.post(
+      "http://localhost:3001/startprocessing",
+      { text: selectedFile.name }
+    )
+    console.log(response.data);
+  }
 
   //Function to handle file upload
   const handleUpload = async () => {
@@ -82,6 +88,7 @@ const FileUpload = () => {
         type="file"
         onChange={handleFileChange}
         style={{ display: "none" }}
+        accept=".pdf,.txt"
       />
 
       {/* Button to trigger file input dialog */}
@@ -132,7 +139,7 @@ const FileUpload = () => {
           </div>
 
           {/*Button to finalize upload or clear section*/}
-          <button className="upload-btn" onClick={handleUpload}>
+          <button className="upload-btn" onClick={uploadStatus === "done" ? startProcessing : handleUpload}>
             {uploadStatus === "select" || uploadStatus ==="uploading"
               ? "Upload"
               : "Done"}

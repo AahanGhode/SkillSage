@@ -3,17 +3,24 @@
     height: 100vh;
     width: 100vw;
     display: flex;
+    align-items: center;
 }
 
 .menu-item {
     border-radius: 10px;
-    border: solid 2px #00bf71;
+    background-color: transparent;
     display: flex;
     align-items: center;
     height: 50px;
-    width: 80%;
     cursor: pointer;
     transition: .5s;
+    border: 1.5px solid transparent;
+    width: 100%;
+}
+
+.menu-item:hover{
+    background-color: #0C0B1F;
+    box-shadow: 0 0 5px #18A34F;
 }
 
 .menu-item > * {
@@ -21,16 +28,28 @@
 }
 
 .menu-upload {
+    border-color: #00BF71;
+    border-left: none;
+    border-right: none;
     background: #18A34F;
+    margin-bottom: 30px;
+    border-radius: 0;
 }
 
-.menu-upload:hover {
+.topics-container {
+    display: none;
+}
+
+
+.menu-item:hover {
     background: transparent;
-    border-color: #F3F3F3;
+    border-color: #00BF71;
 }
 
 .logo {
     padding: 50px;
+    padding-top: 100px;
+    padding-bottom: 50px;
 }
 
 .upload-btn-container{
@@ -44,9 +63,9 @@
 .menu {
     display: flex;
     flex-direction: column;
-    align-items: center;
     height: 100vh;
     background: #111032;
+    gap: 15px;
 }
 
 .subtitle {
@@ -87,4 +106,9 @@
 
 .uploadText{
     font-weight:500;
+    font-size: medium;
+}
+
+.slogan {
+    font-weight: 300;
 }

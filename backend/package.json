@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node main.js",
-    "build": "cd ../frontend && npm install && npm run build"
+    "build": "cd ../frontend && npm install && npm run build",
+    "postinstall": "patch-package" 
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,6 +19,7 @@
     "express": "^4.19.2",
     "groq-sdk": "^0.3.3",
     "multer": "^1.4.5-lts.1",
+    "patch-package": "^8.0.0",
     "pdf-parse": "^1.1.1"
   }
 }

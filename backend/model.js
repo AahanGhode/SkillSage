@@ -1,5 +1,8 @@
+import dotenv from 'dotenv';
+import Groq from 'groq-sdk';
+import pdf from 'pdf-parse';
 // model class
-class Model {
+export class Model {
     constructor () {
         dotenv.config()
         this.groq = new Groq({
@@ -62,12 +65,12 @@ class Model {
     }
 
     async processChunksToDictionary() {
-        for (let i = 0; i < chunks.length; i++) {
-            const relatedText = await groq.chat.completions.create({
+        for (let i = 0; i < this.chunks.length; i++) {
+            const relatedText = await this.groq.chat.completions.create({
                 messages: [
                     {
                         role: "user",
-                        content: chunks[i] + `Would anything here be relevant for a test on the topic?
+                        content: this.chunks[i] + `Would anything here be relevant for a test on the topic?
                             If there are no actual concepts being explained (such as general topics), say no.
                             Say no to anything that might look like the table of contents.
                             Respond with one word, yes or no.`
@@ -87,7 +90,7 @@ class Model {
             }
 
             // Ask about what topic the text is about
-            const topic = await groq.chat.completions.create({
+            await this.groq.chat.completions.create({
                 messages: [
                 {
                     role: "system",
@@ -95,16 +98,14 @@ class Model {
                 }
             ],
                 model: "llama3-70b-8192"
-            }).then((response) => response.choices[0].message.content)
+            }).then((topic) => response.choices[0].message.content)
 
-            if (!dictionary.has(topic)) {
-                dictionary[topic] = [i];
+            if (!this.dictionary.has(topic)) {
+                this.dictionary[topic] = [i];
             } else {
-                dictionary[topic].push(i);
+                this.dictionary[topic].push(i);
             }
         }
-
-        this.dictionary = dictionary
     }
 
     async generateQuiz(numMCQ, numTF, numSA) {
@@ -176,5 +177,3 @@ class Model {
         return quiz;
     }
 }
-
-export default Model
