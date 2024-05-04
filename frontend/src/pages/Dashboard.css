@@ -1,0 +1,90 @@
+.background {
+    background: #02011e;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+.menu-item {
+    border-radius: 10px;
+    border: solid 2px #00bf71;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 80%;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.menu-item > * {
+    padding-left: 20px;
+}
+
+.menu-upload {
+    background: #18A34F;
+}
+
+.menu-upload:hover {
+    background: transparent;
+    border-color: #F3F3F3;
+}
+
+.logo {
+    padding: 50px;
+}
+
+.upload-btn-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background: #111032;
+}
+
+.subtitle {
+    color: #00bf71;
+    font-family: Cambria;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
+
+.labels {
+    font-weight: 300;
+    margin: 0;
+    padding-top: 3vh;
+}
+
+.unlimited {
+    background: linear-gradient(45deg, #FFA500, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    margin:0;
+}
+
+.fileTypes{
+    -webkit-background-clip: text;
+    display: inline-block;
+    font-weight: 600;
+    margin:0;
+}
+
+.uploadText{
+    font-weight:500;
+}
