@@ -6,6 +6,7 @@ import multer from 'multer';
 import cors from 'cors';
 
 import { Model } from './model.js';
+let model = new Model();
 
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
@@ -14,6 +15,9 @@ const __dirname = path.dirname(__filename); // get the name of the directory
 // setup for server
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+export let uploaded = 0;
+
 app.use(cors());
 app.use(express.json());
 
@@ -45,8 +49,6 @@ app.get("/api", (req, res) => {
 
 // start processing file
 app.post('/startprocessing', async (req, res) => {
-  const model = new Model();
-
   // get text from request
   const fileName = req.body.text;
   // if file is pdf
@@ -59,12 +61,39 @@ app.post('/startprocessing', async (req, res) => {
   }
 
   await model.splitTextIntoChunks();
-  await model.processChunksToDictionary();
+  // await model.processChunksToDictionary();
 
-  // Print model dictionary keys
-  console.log(model.dictionary.keys().next().value);
+  console.log(model.dictionary);
 
-  res.send(model.dictionary);
+  console.log("did nothing");
+  res.send("did nothing");
+});
+
+// app.get('/gettopics', async (req, res) => {
+//   // const response = await model.getResponse(req.query.prompt);
+//   // res.send(response);
+// });
+
+app.post('/getflashcards', async (req, res) => {
+  model.setSelectedTopics(req.body.topics);
+  console.log("Getting flashcards");
+  const response = await model.generateFlashcards();
+  console.log("Got flashcards");
+
+
+  res.send(response);
+});
+
+app.post('/getquiz', async (req, res) => {
+  model.setSelectedTopics(req.body.topics);
+  let numMcq = req.body.numMcq;
+  let numTF = req.body.numTF;
+  let numSA = req.body.numSA;
+  console.log("Getting quiz");
+  const response = await model.generateQuiz(numMcq, numTF, numSA);
+  console.log("Got quiz");
+
+  res.send(response);
 });
 
 app.post('/upload', upload.single('file'), async (req, res) => {

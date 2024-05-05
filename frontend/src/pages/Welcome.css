@@ -1,0 +1,15 @@
+
+
+.App {
+    width: 100vw;
+    height: 100vh;
+    background-image: '../assets/backg.jpg';
+}
+
+.welcome {
+    background-image: '../assets/backg.jpg';
+    margin-top: -70px;
+    font-size: 50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

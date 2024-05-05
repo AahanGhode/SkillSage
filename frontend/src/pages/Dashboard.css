@@ -36,8 +36,13 @@
     border-radius: 0;
 }
 
-.topics-container {
+.topics-container, .cards-container {
     display: none;
+}
+
+.cards-container > * {
+    display: flex;
+    justify-content: center;
 }
 
 

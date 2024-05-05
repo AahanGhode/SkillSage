@@ -1,0 +1,24 @@
+.flashcard {
+    box-shadow: 0 0 10px #00BF71;
+    background-color: #1C1B35;
+    backdrop-filter: blur(8px);
+    margin: auto; /* replaces margin-left */
+    padding: 50px;
+    text-align: center;
+    width: 50%;
+    height: 20vh;
+    cursor: pointer;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* added to center content horizontally */
+    transition: 0.5s;
+    position: absolute; /* added to allow centering in parent */
+    top: 50%; /* added to center vertically */
+    left: 50%; /* added to center horizontally */
+    transform: translate(-30%, -50%); /* added to correct for element's own dimensions */
+}
+
+.flashcard:hover {
+    transform: scale(1.05) translate(-30%, -50%); /* updated to maintain centering while scaling */
+}

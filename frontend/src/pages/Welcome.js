@@ -1,12 +1,14 @@
 import React from 'react';
-import '../App.css';
+import './Welcome.css';
 
-function Home() {
-    return (
-    <div className="App">
-        <h1>Welcome to the Home Page</h1>
-    </div> 
-    );
+class Welcome {
+    render() {
+        return (
+            <div>
+                <img src="logo.png" alt="logo" />
+            </div>
+        );
+    }
 }
-
-export default Home;
+ 
+export default Welcome;

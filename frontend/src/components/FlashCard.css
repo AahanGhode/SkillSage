@@ -1,0 +1,11 @@
+.card {
+    border: 2px solid #00BF71;
+    box-shadow: 0 0 10px #00BF71;
+    background-color: #1C1B35;
+    backdrop-filter: blur(8px);
+    margin-left: 50px;
+    text-align: center;
+    width: 30vw;
+    height: 90vh;
+    border-radius: 15px;
+}

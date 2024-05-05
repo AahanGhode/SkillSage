@@ -1,4 +1,6 @@
 .popupBg {
+    border: 2px solid #00BF71;
+    box-shadow: 0 0 10px #00BF71;
     background-color: #1C1B35;
     backdrop-filter: blur(8px);
     margin-left: 50px;
@@ -25,8 +27,16 @@ input {
 .topics-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     cursor: pointer;
+    overflow-y: auto;
+    max-height: 50vh;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    z-index: 99;
+}
+.topics-list ::-webkit-scrollbar {
+    display: none;
 }
 
 .topics-list > * {
@@ -43,4 +53,33 @@ input {
 .topics-list > *:hover {
     background: #18A34F;
     box-shadow: 0 0 5px #00BF71;
+}
+
+textarea {
+    font-size: 20px;
+    position: absolute; 
+    bottom: 100px;
+    color: black;
+    width: 80%;
+    padding: 10px;
+    height: 20px;
+    overflow: hidden;
+    resize: none;
+    border-radius: 7px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.generateButton {
+    width: 80%;
+    height: 5vh;
+    bottom: 25px;
+    position: absolute;
+    left: 50%;
+    border-radius: 3px;
+    transform: translate(-50%, -50%);
+    border: 2px solid #00BF71;
+    background-color: #00BF71;
+    color: #f3f3f3;
+    cursor: pointer;
 }
