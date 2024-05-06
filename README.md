@@ -1,3 +1,16 @@
+# SkillSage - AI-Powered Study Guide
+SkillSage provides flashcards, quizzes and comprehensive study guides by only asking for one file, be it a slideshow, a PDF of course content or a picture of the blackboard in a jpg format. Using Groq AI, SkillSage can provide detailed information to ensure students' performance is improved.
+
+![image](https://github.com/AahanGhode/SkillSage/assets/144390651/84631619-7258-46cb-9e3e-2077f150f383)
+![image](https://github.com/AahanGhode/SkillSage/assets/144390651/0f66083d-8d9c-4444-8e9d-8f1c927d7215)
+
+Made with CSS, Express.js, GroqAI, HTML, Javascript, Node.js, and React.
+
+Run `npm start` on in both backend and frontend directories.
+
+Dashboard can be accessed at [http://localhost:3000/dashboard](url).
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
